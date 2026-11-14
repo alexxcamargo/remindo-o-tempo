@@ -1658,39 +1658,52 @@ body.presenter .cue{bottom:auto;top:calc(42vh - 22px)}
 
   // sincronização pública (PeerJS, sem login)
   (function(){
-    if(!window.Peer)return;
+    var HAS_PEER=!!window.Peer;
     var TID='remindo-o-tempo-alexc-telao-v1',KEY='3562';
     var sync=document.getElementById('pSync');
     function setS(t,on){sync.textContent=t;sync.classList.toggle('on',!!on);}
     var conn=null,peer=null,started=false;
-    function state(){return {k:KEY,i:i,step:step};}
+    function state(){return {k:KEY,i:i,step:step,t:Date.now()};}
+    var TOPIC='remindo-o-tempo-alexc-7q2k9x-v1',busy=false,pend=null,lastOk=0;
+    function relay(st){
+      if(busy){pend=st;return;}busy=true;
+      fetch('https://ntfy.sh/'+TOPIC+'?cache=no',{method:'POST',body:JSON.stringify(st)}).then(function(r){if(r.ok){lastOk=Date.now();if(!(conn&&conn.open))setS('sincronizando o telão (internet)',true);}else{setS('erro ao enviar ('+r.status+'), tentando…');}}).catch(function(){setS('sem internet no celular?');}).then(function(){busy=false;if(pend){var q=pend;pend=null;relay(q);}});
+    }
     function startPresenter(){
       if(started)return;started=true;setS('conectando ao telão…');
-      peer=new Peer({debug:0});
+      if(!HAS_PEER)return;peer=new Peer({debug:0});
       function connect(){
         if(!peer||peer.destroyed)return;
         var c=peer.connect(TID,{reliable:true});
         c.on('open',function(){conn=c;setS('sincronizando o telão',true);c.send(state());});
-        c.on('close',function(){if(conn===c)conn=null;setS('telão desconectado, tentando de novo…');setTimeout(connect,2500);});
+        c.on('close',function(){if(conn===c)conn=null;setTimeout(connect,2500);});
         c.on('error',function(){setTimeout(connect,2500);});
       }
       peer.on('open',connect);
-      peer.on('error',function(e){if(e&&e.type==='peer-unavailable'){setS('telão não encontrado. Abra o telão e espere…');setTimeout(connect,3000);}});
+      peer.on('error',function(e){if(e&&e.type==='peer-unavailable'){if(Date.now()-lastOk>15000)setS('procurando o telão…');setTimeout(connect,3000);}});
       peer.on('disconnected',function(){try{peer.reconnect()}catch(x){}});
     }
+    var lastT=0;
+    function apply(v){
+      if(!v||v.k!==KEY||typeof v.i!=='number')return;
+      if(v.t&&v.t<=lastT)return;if(v.t)lastT=v.t;
+      if(v.i>=0&&v.i<slides.length){var ent=v.i!==i;i=v.i;step=Math.min(v.step|0,slides[i]._max);render(ent);}
+    }
+    function startRelay(){
+      try{var es=new EventSource('https://ntfy.sh/'+TOPIC+'/sse');
+        es.onmessage=function(ev){try{var m=JSON.parse(ev.data);if(m&&m.event==='message'&&m.message)apply(JSON.parse(m.message));}catch(x){}};
+      }catch(x){}
+    }
     function startScreen(){
-      peer=new Peer(TID,{debug:0});
-      peer.on('connection',function(c){c.on('data',function(v){
-        if(!v||v.k!==KEY||typeof v.i!=='number')return;
-        if(v.i>=0&&v.i<slides.length){var ent=v.i!==i;i=v.i;step=Math.min(v.step|0,slides[i]._max);render(ent);}
-      });});
+      if(!HAS_PEER)return;peer=new Peer(TID,{debug:0});
+      peer.on('connection',function(c){c.on('data',apply);});
       peer.on('error',function(e){if(e&&e.type==='unavailable-id'){try{peer.destroy()}catch(x){}setTimeout(startScreen,4000);}});
       peer.on('disconnected',function(){try{peer.reconnect()}catch(x){}});
     }
     var prevHook=window.__onRender;
-    window.__onRender=function(){if(prevHook)prevHook();if(PRES){startPresenter();if(conn&&conn.open)conn.send(state());}};
-    var prevSet=window.__setPres;window.__setPres=function(v){prevSet(v);if(PRES)startPresenter();};
-    if(PRES)startPresenter();else if(!WANT_PRES)startScreen();
+    window.__onRender=function(){if(prevHook)prevHook();if(PRES){startPresenter();var st=state();if(conn&&conn.open)conn.send(st);relay(st);}};
+    var prevSet=window.__setPres;window.__setPres=function(v){prevSet(v);if(PRES){startPresenter();relay(state());}};
+    if(PRES){startPresenter();relay(state());}else if(!WANT_PRES){startRelay();startScreen();}
   })();
 
   document.getElementById('bFull').onclick=function(e){e.stopPropagation();full();};
