@@ -1689,6 +1689,7 @@ body.presenter .cue{bottom:auto;top:calc(42vh - 22px)}
     }
     var prevHook=window.__onRender;
     window.__onRender=function(){if(prevHook)prevHook();if(PRES){startPresenter();if(conn&&conn.open)conn.send(state());}};
+    var prevSet=window.__setPres;window.__setPres=function(v){prevSet(v);if(PRES)startPresenter();};
     if(PRES)startPresenter();else if(!WANT_PRES)startScreen();
   })();
 
