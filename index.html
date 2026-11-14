@@ -519,7 +519,7 @@ body.no-anim *,body.no-anim *::before,body.no-anim *::after{animation-duration:0
 .pin-box button{height:56px;border-radius:12px;border:0;background:var(--good);color:var(--ink);font:600 18px var(--f-body);cursor:pointer}
 .pin-box p{margin:0;min-height:20px;font-size:14px;color:var(--bad)}
 .pres-top{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--chalk)}
-.pres-notes{flex:1;overflow-y:auto;font-size:19px;line-height:1.5;color:var(--chalk)}
+.pres-notes{flex:1;overflow-y:auto;font-size:20px;line-height:1.55;color:var(--chalk);white-space:pre-line}
 .pres-next{margin:0;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 .pres-btns{display:grid;grid-template-columns:1fr 2fr;gap:12px}
 .pres-btns button{height:64px;border-radius:14px;border:1px solid var(--line);background:#14181e;color:var(--chalk);font:500 18px var(--f-body);cursor:pointer}
@@ -1448,114 +1448,7 @@ body.presenter .cue{bottom:auto;top:calc(42vh - 22px)}
   var i=0,step=0;
 
   var WANT_PRES=location.hash==='#apresentador',PRES=false;
-  var NOTES={"elefante": "Jonathan Haidt: psicólogo social americano, professor na Universidade de Nova York (NYU). A metáfora vem do livro A Hipótese da Felicidade (2006) e volta em A Mente Moralista. Também é o autor de A Geração Ansiosa (2024), sobre celulares e a saúde mental dos jovens. O cavaleiro (razão) é pequeno; o elefante (emoção) é enorme; quando discordam, o elefante ganha. É metáfora, não dado. Kahneman (Nobel 2002) diz algo parecido: Sistema 1 rápido e emocional, Sistema 2 lento e racional.", "damasio": "António Damásio: neurocientista português, professor na Universidade do Sul da Califórnia (USC), autor de O Erro de Descartes (1994). Caso Elliot (sólido): depois de tirar um tumor no lobo frontal, ficou com memória e raciocínio intactos, mas passava horas sem decidir coisas simples, como onde almoçar ou como arquivar um papel, e tomava decisões ruins na vida. A lesão é no cérebro, no córtex pré-frontal ventromedial, atrás da testa (tumor, AVC ou acidente). Conclusão de Damásio: a emoção não atrapalha a decisão, ela torna a decisão possível. Disciplina: a emoção de longo prazo (quem eu quero ser) vencendo a de curto prazo (o conforto de agora).",   "capa": "Boas-vindas. Remindo o tempo: gestão de tempo para dias maus. Respire, sorria, apresente o tema em uma frase.",   "efesios": "Leia Efésios 5.15-16 devagar. Paulo escreve preso, para igrejas cercadas de paganismo. \"Dias maus\": uma época que puxa para viver como todo mundo.",   "remir": "Grego: ἐξαγοραζόμενοι, pronúncia exagorazòmeni. Ek (para fora) + agorázō (comprar no mercado) = comprar de volta, resgatar. Mesmo verbo de Gálatas 3.13: Cristo nos resgatou. Quem foi resgatado resgata o seu tempo para ele.",   "kairos": "Khrónos: o tempo do relógio. Kairós: a oportunidade. Paulo usa kairós em Ef 5.16. Apresente como 'um jeito de enxergar': as palavras se sobrepõem no Novo Testamento. Deus é Senhor dos dois.",   "pergunta": "Pergunte e espere um segundo. Deixe as pessoas se reconhecerem.",   "extremos": "Ativista: faz demais e quebra. Procrastinador: adia e acumula culpa. Os dois olham demais para si e de menos para o Senhor (cap. 2 do livro).",   "parte-1": "Parte 1: quem sou eu.",   "minha-historia": "Meu nome é Alex. Vida toda em São Paulo, há 5 anos em Bertioga. Plantação de igreja. Agenda cheia, mas não deixo sufocar minha relação com Deus. O tempo com Deus vem primeiro, o resto se organiza em volta dele.",   "gravidade": "Deus no centro, tudo em órbita. Cl 1.17: 'nele tudo subsiste' (συνέστηκεν, synéstēken, se mantém unido). Trabalho, família, igreja não competem com Deus: encontram seu lugar em volta dele.",   "quem-sou-eu": "Walkers Tech: engenheiro de software para algumas empresas. Produtos: Nexos (condomínios), Kronozy (IA de atendimento), Central Cash (gateway de pagamentos). Igreja: prego, EBD, louvor, aulas na igreja mãe.",   "vida-de-tita": "2022: Vida de Titã com o Augusto. Paguei 6 mil, hoje custa 30 mil (6 meses de acompanhamento). Trazer de graça para a igreja, com cosmovisão cristã. Contei isso ao Augusto e ele ficou feliz.",   "cuidado": "Clareza sobre o tempo me protegeu de viver ansioso e do esgotamento. Mas não é fórmula: depressão e ansiedade são doenças reais. Cuidado, não culpa.",   "virada": "Pergunta do livro (p. 146). Deixe a pergunta no ar.",   "frase": "Pausa depois de 'o perigo não é fracassar'. Depois: 'é ter sucesso no que não importa'.",   "roteiro": "Três partes: neurociência, cosmovisão bíblica, prática.",   "parte-2": "Parte 2: como o seu cérebro funciona.",   "energia": "Cérebro: ~2% do peso, ~20% da energia, mesmo parado. Por isso prefere o automático.",   "instintos": "Poupar energia, evitar dor, buscar prazer. Procrastinar é instinto. Alerta: a mente é imediatista; a fé espera. Gl 6.9: a seu tempo ceifaremos.",   "mente": "Memória de curto prazo: cerca de 7 itens. Depois disso, sobrecarga. Se você precisa lembrar, vai esquecer: anote.",   "confusao": "Sem saber o que, como, quando e em que ordem, a gente trava. Clareza e definição: o nome do jogo.",   "trilha": "Use ou perca. Mato, trilha, estrada. Falhou um dia? A trilha ainda está lá: volte a passar por ela.",   "voos": "Voo de galinha: empolgação e volta ao zero. Não existe mudança brusca: o cérebro muda com repetição.",   "habito": "Resistência, repetição, automático, você sente falta. 'O cérebro sabota e desiste' é imagem, não mecanismo literal.",   "motivacao": "Motivação oscila. Disciplina avança um passo por dia. A motivação te faz começar; o que te mantém é outra coisa.",   "estrutura": "Disciplina não é força de vontade, é estrutura (Hofmann 2012; Galla e Duckworth 2015). Lally 2009, UCL: média de 66 dias, de 18 a 254. Falhar um dia não zerou o progresso.",   "ritmo": "O ritmo digital não é o ritmo da vida. Procrastinamos com mais facilidade e não respeitamos os limites do corpo com multitarefas.",   "tripe": "Sono, alimentação, atividade física. Peterson: milhares de horas de clínica, ajustava sono e alimentação primeiro. Elias (1Rs 19): vitória no Carmelo, fuga, pede para morrer; Deus dá comida e sono antes da palavra. Não substitui tratamento.",   "piloto": "Piloto automático: a gente só reage ao dia. Planejar o amanhã não é se angustiar com ele.",   "presente": "Ontem: entregue. Hoje: é onde você vive. Amanhã: planeje e confie. Mt 6.34, fim do trecho sobre ansiedade; logo antes vem o 6.33, buscai primeiro o reino. Evite 'aceitação completa' ou 'no agora está tudo bem'.",   "porque": "Por quê? Porque Deus me chamou. Por quem? Por Deus e pelas pessoas à minha volta. Frankl: quem tem um porquê suporta quase qualquer como.",   "parte-3": "Parte 3: o que a Bíblia diz.",   "definicao": "Produtividade: responder aos chamados de Deus com excelência. Challies: pelo bem das pessoas e para a glória de Deus.",   "sucesso": "Sucesso não é conquistar muito. É ser fiel. Os profetas: ninguém os chamaria de bem-sucedidos, mas foram fiéis.",   "de-cima": "De cima para baixo: Deus desce até nós. Antes das disciplinas, os meios de graça: Palavra e sacramentos no culto do dia do Senhor.",   "domingo": "Não desperdice seu domingo. Is 58.13-14: povo religioso que jejuava e explorava; Deus queria deleite, não ritual.",   "lado": "Alta performance centrada em si deixa a alma vazia. Mc 10.45: Tiago e João pediam honra; Jesus veio para servir.",   "ancora": "As técnicas são ferramentas. A motivação final é o amor a Deus e ao próximo.",   "parte-4": "Parte 4: na prática.",   "pilares": "Clareza, método, entendimento, energia, sobre a base de um coração alinhado a Deus.",   "triade": "Tríade do tempo (Christian Barbosa): importante, urgente, circunstancial. Inverta: 60/30/10.",   "farois": "Farol 1: objetivos de longo prazo. Farol 2: compromissos firmados (seja a sua palavra). Farol 3: rotina sustentável. Pareto 80/20 é regra prática, não lei.",   "farol-3": "As 7 atividades: sono, alimentação, atividade física, descompressão, lazer sem culpa, pessoas importantes, vida espiritual. Entram primeiro na agenda.",   "descanso": "Aprenda a descansar para aprender a produzir. Descompressão é diferente de lazer. Sl 127.2.",   "ferramentas": "Google Agenda nas duas visões: agenda (compromissos com hora) e tarefas. Agenda física para planejar à noite. O que importa é tirar da cabeça.",   "diario-semanal": "Semanal para projetos longos. Diário para vida dinâmica: é o que eu uso hoje.",   "planner": "Planejar à noite: decide com a razão e libera o lazer sem culpa.",   "passo-a-passo": "Revise, compromissos, básico, objetivos, coringa, durma em paz.",   "coringa": "Tempo coringa: espaço livre para imprevistos. Se nada acontecer, adianta tarefa ou respira.",   "analise": "Análise de 4 pontos: aceite e assuma, por que não foi, o que fazer diferente, tome uma decisão. Sem culpa e sem desculpa.",   "formula": "Ação, hora, local. Tarefa com verbo de ação. Sustentável no longo prazo.",   "cinco": "5-5-5: ler, meditar, orar. Você não é Lutero, e Lutero não começou com duas horas. Do 0 para o 1.",   "letreiro": "Letreiro de igreja nos EUA. Deixe a frase fazer o trabalho.",   "progresso": "Teresa Amabile (Harvard): ~12 mil diários de 238 profissionais. Progresso pequeno num trabalho com significado é o que mais motiva. Lembra do porquê?",   "dia-um": "Um dia ou dia um? Uma bolinha por dia.",   "castelo": "Um tijolo de cada vez, sobre a base da graça.",   "persistencia": "Amadurecer dá trabalho. Como músculo. Persistência.",   "irregular": "A caminhada é irregular: solteiro, casamento, bebê, mudanças. Alinhe o coração todo dia e ajuste o método a cada estação.",   "cristo": "Não é a força de vontade que nos mantém, é a graça. Eu e você vamos falhar; ele não falha. Um dia de cada vez.",   "direcao": "Direção é mais importante que velocidade.",   "ajuda": "2 horas por semana: terça e quinta, conversas de 30 min. QR code para agendar.",   "fim": "Frase-tema. Obrigado. Ore com o grupo, se for o caso." } ;
-  function fit(){var W=PRES?vp.clientWidth:innerWidth,H=PRES?vp.clientHeight:innerHeight;var s=PRES?Math.min((W-16)/1600,(H-16)/900):Math.min((W-24)/1600,(H-60)/900);stage.style.setProperty('--s',Math.max(s,.1));}
-  addEventListener('resize',fit);fit();
-
-  // palavras
-  document.querySelectorAll('.words').forEach(function(el){
-    var k=0;
-    (function wrap(node){
-      [].slice.call(node.childNodes).forEach(function(c){
-        if(c.nodeType===3){
-          var f=document.createDocumentFragment();
-          c.textContent.split(/(\s+)/).forEach(function(t){
-            if(!t)return;
-            if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(' '));return;}
-            var s=document.createElement('span');s.className='w';s.style.setProperty('--i',k++);s.textContent=t;f.appendChild(s);
-          });
-          node.replaceChild(f,c);
-        } else if(c.nodeType===1){wrap(c);}
-      });
-    })(el);
-  });
-
-  slides.forEach(function(s){
-    var m=0;s.querySelectorAll('[data-step]').forEach(function(e){m=Math.max(m,+e.dataset.step)});
-    s._max=m;
-  });
-
-  // calendários
-  function dots(id){var el=document.getElementById(id);for(var n=0;n<28;n++){var d=document.createElement('span');d.className='dot';d.style.setProperty('--i',n);el.appendChild(d);}}
-  dots('dotsA');dots('dotsB');
-
-  // castelo: de baixo para cima, com ameias no topo
-  (function(){
-    var c=document.getElementById('castle'),rows=7,cols=8,cells=[];
-    for(var r=0;r<rows;r++){for(var k=0;k<cols;k++){
-      var b=document.createElement('span');b.className='brick';
-      var fromBottom=rows-1-r;
-      if(r===0&&k%2===1)b.classList.add('gap');
-      b.style.setProperty('--i',fromBottom*cols+k);
-      if(fromBottom%2===1)b.style.marginLeft=(k===0?'0':'');
-      c.appendChild(b);
-    }}
-    var g=document.createElement('div');g.className='ground';g.textContent='A graça de Deus';c.appendChild(g);
-  })();
-
-  // grama da trilha
-  (function(){var g=document.getElementById('grass');if(!g)return;var sd=3;function r(){sd=(sd*9301+49297)%233280;return sd/233280;}
-    for(var n=0;n<340;n++){var x=r()*620,y=r()*520,hh=8+r()*16,l=document.createElementNS('http://www.w3.org/2000/svg','line');
-      l.setAttribute('x1',x);l.setAttribute('y1',y);l.setAttribute('x2',x+(r()-.5)*6);l.setAttribute('y2',y-hh);g.appendChild(l);}})();
-
-  // órbitas em volta de Deus
-  (function(){
-    var cv=document.getElementById('well');if(!cv)return;var sl=cv.closest('.slide');
-    var W=2000,H=1520;cv.width=W;cv.height=H;var c=cv.getContext('2d');
-    var cx=W*.5,cy=H*.5,tilt=.42;
-    var items=[['Trabalho',260,.55],['Família',370,.42],['Igreja',480,.34],['Estudo',590,.28],['Descanso',700,.23]];
-    var t0=null,was=false;
-    function frame(ts){
-      var act=sl.classList.contains('active');if(act&&!was)t0=ts;was=act;if(!t0)t0=ts;var t=(ts-t0)/1000;
-      if(act){
-        c.clearRect(0,0,W,H);
-        var show=+sl.dataset.cur>=1;
-        // órbitas
-        items.forEach(function(it){c.beginPath();c.ellipse(cx,cy,it[1],it[1]*tilt,0,0,Math.PI*2);c.strokeStyle='rgba(240,238,232,.22)';c.lineWidth=3;c.stroke();});
-        // luz central
-        var pu=.8+Math.sin(t*1.6)*.15,gl=c.createRadialGradient(cx,cy,0,cx,cy,230);
-        gl.addColorStop(0,'rgba(240,238,232,'+pu+')');gl.addColorStop(.3,'rgba(82,209,140,'+(pu*.55)+')');gl.addColorStop(1,'rgba(82,209,140,0)');
-        c.fillStyle=gl;c.beginPath();c.arc(cx,cy,230,0,Math.PI*2);c.fill();
-        c.fillStyle='#050608';c.font='700 64px "Bricolage Grotesque", sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillText('DEUS',cx,cy+4);
-        // corpos em órbita
-        items.forEach(function(it,n){var a=t*it[2]+n*1.25,x=cx+Math.cos(a)*it[1],y=cy+Math.sin(a)*it[1]*tilt;
-          if(show){c.beginPath();c.moveTo(cx,cy);c.lineTo(x,y);c.strokeStyle='rgba(82,209,140,.35)';c.lineWidth=2.5;c.stroke();}
-          c.fillStyle='#f0eee8';c.beginPath();c.arc(x,y,16,0,Math.PI*2);c.fill();
-          if(show){c.font='500 40px "JetBrains Mono", monospace';c.fillStyle='rgba(240,238,232,.92)';var right=x>W-380;c.textAlign=right?'right':'left';c.fillText(it[0].toUpperCase(),right?x-26:x+26,y-2);}
-        });
-      }
-      requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  })();
-
-  // relógio
-  var tk=document.getElementById('ticks'),ns='http://www.w3.org/2000/svg';
-  for(var t=0;t<60;t++){var a=t*6*Math.PI/180,r1=t%5?188:176,l=document.createElementNS(ns,'line');
-    l.setAttribute('x1',220+Math.sin(a)*r1);l.setAttribute('y1',220-Math.cos(a)*r1);l.setAttribute('x2',220+Math.sin(a)*196);l.setAttribute('y2',220-Math.cos(a)*196);
-    l.setAttribute('stroke','#f0eee8');l.setAttribute('stroke-width',t%5?1.5:4);if(t%5)l.setAttribute('opacity','.5');tk.appendChild(l);}
-
-  // ritmos
-  (function(){
-    var seed=7;function r(){seed=(seed*9301+49297)%233280;return seed/233280;}
-    var rnd=[];for(var n=0;n<50;n++)rnd.push(r());
-    var d='';for(var x=0,k=0;x<=2200;x+=22,k++){var y=60+(rnd[k%50]-.5)*96;d+=(x?'L':'M')+x+' '+y.toFixed(1)+' ';}
-    document.getElementById('laneFast').setAttribute('d',d);
-    var e='';for(var x2=0;x2<=2200;x2+=10){var y2=60+Math.sin(x2/1100*Math.PI*4)*28;e+=(x2?'L':'M')+x2+' '+y2.toFixed(1)+' ';}
-    document.getElementById('laneSlow').setAttribute('d',e);
-  })();
-
-  function countTo(el,from,to,ms){var t0=null;function f(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/ms),q=1-Math.pow(1-p,3);el.textContent='R$ '+Math.round(from+(to-from)*q).toLocaleString('pt-BR');if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
-  function scramble(el){var txt=el.dataset.text,ch='abcdefghijklmnopqrstuvwxyz#%&*?',t0=null,ms=1300;
-    function f(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/ms),n=Math.floor(p*txt.length),out='';
-      for(var c=0;c<txt.length;c++)out+=c<n?txt[c]:ch[Math.floor(Math.random()*ch.length)];
-      el.textContent=out;if(p<1)requestAnimationFrame(f);else el.textContent=txt;}
-    requestAnimationFrame(f);}
-  var hooks={
-    price:function(s,st){var b=document.getElementById('priceNow');if(st>=1&&!b._done){b._done=1;countTo(b,6000,30000,1600);}if(st<1){b._done=0;b.textContent='R$ 6.000';}},
-    scramble:function(s,st,entered){if(entered)s.querySelectorAll('.scramble').forEach(scramble);},
-    days:function(s,st){var b=document.getElementById('d66');if(st>=2&&!b._done){b._done=1;var t0=null;(function f(ts){if(!t0)t0=ts;var q=Math.min(1,(ts-t0)/1400);b.textContent=Math.round(66*(1-Math.pow(1-q,3)));if(q<1)requestAnimationFrame(f);})(performance.now());}if(st<2){b._done=0;b.textContent='0';}}
-  };
+  var NOTES={"capa":"• Cumprimente, agradeça o convite\n• Pergunte quem chegou cansado hoje (mãos levantadas)","efesios":"• Paulo escreve PRESO (60-62 d.C.)\n• \"Dias maus\": pressão para viver como todo mundo\n• Leia devagar e pare em \"remindo\"","remir":"• Fale a pronúncia: exagorazòmeni\n• Imagem: comprar alguém de volta no mercado de escravos\n• Gl 3.13 conversa com a série de Gálatas","kairos":"• Pergunta: quanto tempo você tem? E quantas oportunidades?\n• Apresente como \"um jeito de enxergar\", não regra do grego\n• Deus é Senhor dos dois","pergunta":"• Silêncio de 3 segundos\n• Deixe as pessoas se reconhecerem","extremos":"• Pergunte: qual dos dois é você?\n• Raiz comum (cap. 2 do livro): olhamos demais para nós","parte-1":"• Transição rápida","minha-historia":"• Conte rápido, sem currículo\n• Destaque: agenda cheia, mas Deus vem primeiro","gravidade":"• Gravidade do sol segura os planetas: Cristo segura tudo\n• Grego: synéstēken = se mantém unido\n• Tire Deus do centro e a vida sai de órbita","quem-sou-eu":"• Não é para impressionar: é para mostrar que dá\n• Sem gestão de tempo, nada disso cabe em 24h","vida-de-tita":"• Cite o Augusto pelo nome\n• Contei pra ele a ideia de levar isso à igreja; ele ficou feliz\n• Vocês estão recebendo de graça","cuidado":"• Fale com calma e olhe para a plateia\n• Se alguém enfrenta isso: procure ajuda, não é falta de fé","virada":"• Deixe a pergunta no ar uns segundos","frase":"• Pausa antes de \"é ter sucesso\"\n• Esse é o tema de hoje","roteiro":"• Cérebro, Bíblia, prática\n• Por que nessa ordem: entender, alinhar, executar","parte-2":"• Transição rápida","energia":"• Exemplo: dirigir no automático vs. aprender a dirigir\n• Por isso o novo cansa tanto","instintos":"• Não é falta de caráter, é biologia\n• Mas a fé espera: Gl 6.9 (contexto: semear e colher)","mente":"• Pergunte: quem já esqueceu algo importante essa semana?\n• Mostre seu caderno ou o celular","confusao":"• Quando não sei o que fazer, faço o mais fácil (rolar o feed)","trilha":"• Exemplo pessoal: a academia no frio","voos":"• Resolução de ano novo: em fevereiro, acabou\n• Gênesis: o livro mais iniciado e menos terminado","habito":"• \"O cérebro sabota e desiste\" é imagem, não mecanismo\n• Exemplo: escovar os dentes já não custa nada","motivacao":"• Motivação é ótima para começar, péssima para manter","elefante":"• Haidt: psicólogo social, NYU\n• Livros: A Hipótese da Felicidade; A Geração Ansiosa (celular e jovens)\n• É metáfora, não dado\n• Kahneman (Nobel 2002): Sistema 1 emocional governa quase tudo","damasio":"• Damásio: neurocientista português, USC\n• Elliot é o nome do paciente no livro\n• Lesão: córtex pré-frontal ventromedial (atrás da testa)\n• Elliot também perdeu emprego e casamento por más decisões\n• Emoção não atrapalha a decisão: torna a decisão possível","estrutura":"• Estudo de Lally (UCL, 2009): ~100 pessoas, 12 semanas\n• Ex.: beber água no almoço, correr 15 min\n• Esquecer os 21 dias: não tem base","ritmo":"• Pergunte: quanto tempo de tela vocês tiveram ontem?\n• Haidt (A Geração Ansiosa) fala disso","tripe":"• Peterson: ajustava sono e alimentação primeiro\n• Elias: veio da vitória do Carmelo, fugiu de Jezabel, pediu para morrer\n• Deus deu comida e sono duas vezes, só depois falou\n• NÃO substitui tratamento","piloto":"• Pergunte e espere: alguém lembra?","presente":"• Mt 6.34 fecha o trecho da ansiedade (6.25-34)\n• Leia também o 6.33: buscai primeiro o reino\n• Evite \"aceitação completa\" ou \"no agora está tudo bem\"","porque":"• Frankl sobreviveu a campos de concentração; a frase é de Nietzsche\n• Pergunte: por quem você acorda cedo?","parte-3":"• Transição: agora, o que Deus diz","definicao":"• Produtividade não é só trabalho: é responder a Deus em tudo","sucesso":"• Profetas: Jeremias pregou 40 anos quase sem resultado\n• Ligue com a frase-tema","de-cima":"• Ordem: graça primeiro, esforço depois\n• Espiritualidade não é escada para subir até Deus","domingo":"• Is 58: povo religioso que jejuava e explorava os outros\n• Deus queria deleite, não ritual","lado":"• Mc 10: Tiago e João tinham pedido os lugares de honra\n• \"Resgate\" (lýtron) conversa com o \"remir\" do começo","ancora":"• Sem âncora, o barco vai para onde o vento manda","parte-4":"• Transição: agora, como eu faço","pilares":"• Rápido: só apresentar, os próximos slides detalham","triade":"• Barbosa propõe 70-20-10; o livro sugere 60-30-10\n• Exercício: classifique o que você fez ontem","farois":"• Método do Augusto (Imersão Ascensão)\n• Pareto é regra prática, não lei exata","farol-3":"• Descompressão ≠ lazer\n• Eles entram primeiro na agenda, não no que sobra","descanso":"• Lazer zumbi: horas no YouTube sem descansar\n• Sl 127: dormir é ato de confiança","ferramentas":"• Mostre no celular a sua agenda, se der","diario-semanal":"• Já testei os dois; hoje uso o diário","planner":"• Exemplo: \"eu do presente\" decide pelo \"eu do futuro\"","passo-a-passo":"• Leva uns 10 minutos por noite","coringa":"• Exemplo real de imprevisto da sua semana","analise":"• Exemplo real seu (Vida de Titã): parede titã não feita\n• Sem culpa, sem desculpa","formula":"• Tarefa vaga trava; verbo de ação destrava","cinco":"• Lutero orava 2h por dia, mas não começou assim\n• 15 minutos é melhor que zero","letreiro":"• Leia o letreiro e deixe a frase trabalhar","progresso":"• Amabile (Harvard): ~12 mil diários de 238 profissionais\n• Comemore pequenas vitórias","dia-um":"• Sugira um calendário de bolinhas na geladeira","castelo":"• A base é a graça, não o seu esforço","persistencia":"• Músculo: só cresce com resistência","irregular":"• As estações mudam: o método se ajusta, o coração se alinha todo dia","cristo":"• Tom mais baixo e pessoal\n• Você vai falhar amanhã. Está tudo bem: a graça segura","direcao":"• Frase do livro; repita duas vezes","ajuda":"• Mostre o QR code e espere as pessoas escanearem\n• 2 conversas de 30 min, terça e quinta","fim":"• Repita a frase-tema\n• Ore com o grupo"};
 
   function render(entered){
     slides.forEach(function(s,n){s.classList.toggle('active',n===i)});
@@ -1627,7 +1520,7 @@ body.presenter .cue{bottom:auto;top:calc(42vh - 22px)}
       var s=slides[i],pad=function(n){return(n<10?'0':'')+n};
       document.getElementById('pCount').textContent=pad(i+1)+' / '+pad(slides.length)+' · etapa '+(step+1)+'/'+(s._max+1);
       document.getElementById('pNotes').innerHTML=esc(NOTES[s.dataset.name]||'');
-      var nx=slides[i+1];document.getElementById('pNext').textContent=nx?('Próximo: '+(NOTES[nx.dataset.name]||'').slice(0,90)+'…'):'Último slide';
+      var nx=slides[i+1];document.getElementById('pNext').textContent=nx?('Próximo slide: '+(i+2)):'Último slide';
     }
     function push(){
       if(!ref)return;var data={i:i,step:step,t:Date.now()};
