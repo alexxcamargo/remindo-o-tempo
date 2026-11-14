@@ -1667,7 +1667,7 @@ body.presenter .cue{bottom:auto;top:calc(42vh - 22px)}
     var TOPIC='remindo-o-tempo-alexc-7q2k9x-v1',busy=false,pend=null,lastOk=0;
     function relay(st){
       if(busy){pend=st;return;}busy=true;
-      fetch('https://ntfy.sh/'+TOPIC+'?cache=no',{method:'POST',body:JSON.stringify(st)}).then(function(r){if(r.ok){lastOk=Date.now();if(!(conn&&conn.open))setS('sincronizando o telão (internet)',true);}else{setS('erro ao enviar ('+r.status+'), tentando…');}}).catch(function(){setS('sem internet no celular?');}).then(function(){busy=false;if(pend){var q=pend;pend=null;relay(q);}});
+      fetch('https://ntfy.sh/'+TOPIC+'?cache=no',{method:'POST',body:JSON.stringify(st)}).then(function(r){if(r.ok){lastOk=Date.now();if(!(conn&&conn.open))setS('✓ conectado ao telão',true);}else{setS('erro ao enviar ('+r.status+'), tentando…');}}).catch(function(){setS('sem internet no celular?');}).then(function(){busy=false;if(pend){var q=pend;pend=null;relay(q);}});
     }
     function startPresenter(){
       if(started)return;started=true;setS('conectando ao telão…');
@@ -1675,7 +1675,7 @@ body.presenter .cue{bottom:auto;top:calc(42vh - 22px)}
       function connect(){
         if(!peer||peer.destroyed)return;
         var c=peer.connect(TID,{reliable:true});
-        c.on('open',function(){conn=c;setS('sincronizando o telão',true);c.send(state());});
+        c.on('open',function(){conn=c;setS('✓ conectado ao telão',true);c.send(state());});
         c.on('close',function(){if(conn===c)conn=null;setTimeout(connect,2500);});
         c.on('error',function(){setTimeout(connect,2500);});
       }
